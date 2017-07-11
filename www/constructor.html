@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+</body>
+
+<script type="text/javascript">
+
+ function extend(o,p){
+	for(prop in p){
+		o[prop] = p[prop];
+	}
+} 
+
+function defineClass(constructor, methods, statics){
+		extend(constructor.prototype, methods);
+		extend(constructor, statics);
+
+		return constructor;
+	} 
+
+	var Product = defineClass(function Product(type, title,price){
+		this.type = type;
+		this.price = price;
+		this.title = title;
+	}, {
+		displayItem : function() {
+		console.log(this.type + " " + this.price);
+	},
+
+		setTitle : function(title){
+		console.log(this.title = title);
+	}
+
+
+	},
+ {
+ 	stocks: function(){
+ 		console.log(Product.prototype);
+ 	}
+ });
+
+	var  DVD = new Product("dvd", "home alone", "34");
+	DVD.displayItem();
+	DVD.setTitle("Avengers");
+	//DVD.stocks();
+	Product.stocks();
+
+
+	/*var o = {x:1, y:2 };
+//checkout babel and ES2016 ESHARMONY
+
+	function Product(type, price, title){
+		this.type = type;
+		this.price = price;
+		this.title = title;
+	}
+
+
+	Product.prototype.displayItem = function() {
+		console.log(this.type + " " + this.price);
+	}
+
+
+	/*console.log(Product.prototype.constructor === Product);
+	//prototypal inheritance
+	var DVD	= new Product("dvd", "23", "home alone");
+				//js creates an empty obj {}
+				//js invokes the function as a method of the empty object
+				//{}.Product("dvd", "23", "home alone");
+				//the empty object {} is now d this.
+				//the empty object then inherits the prototype property of the function.
+				//	product.prototype
+				//		|
+				//		v
+				//		{}
+				//so dvd inherits the empty {} that contains d prototype.
+	DVD.displayItem();  
+
+	Product.prototype.setTitle	= function(title){
+		this.title = title;
+	} */
+
+
+
+var Product = (function(){
+
+	function Product(type, title, price){
+		this.type = type;
+		this.price = price;
+		this.title = title;
+	}
+
+	Product.prototype.displayItem = function() {
+		console.log(this.type + " " + this.price);
+}
+
+	return new Product("dvd", "home alone 4","500");
+
+
+})();
+
+
+
+</script>
+
+
+</html>
